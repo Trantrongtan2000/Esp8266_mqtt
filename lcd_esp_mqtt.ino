@@ -3,7 +3,6 @@
 #include <Wire.h>;
 #include <ESP8266WiFi.h>
 
-
 int cambien=12;   //Chan D6
 int relay =16;    //Chan D0
 int relay2=5;     //Chan D1
@@ -54,13 +53,12 @@ void load(){
 }
 
 void print_sensor(String a, String b){
+    lcd.clear();
     lcd.setCursor(0, 0);       
     lcd.print(a);
     load();
     lcd.setCursor(0, 1);    
-    lcd.print(b);     
-    delay(1000);
-    lcd.clear();
+    lcd.print(b);      
 }
 
 void setup() {
@@ -72,12 +70,12 @@ void setup() {
   pinMode(relay2,OUTPUT);
   pinMode(relay3,OUTPUT);
   pinMode(bom,OUTPUT);
-  lcd.begin(0,2);                                                     
+  Wire.begin(D3, D4);
+  lcd.begin();                                                     
   lcd.backlight();
   lcd.setCursor(0, 0);
   lcd.print("Da khoi dong");
   delay(1000);
-  lcd.clear();
   WiFi.begin(ssid, password);
   while ( WiFi.status() != WL_CONNECTED ) 
   {
@@ -88,7 +86,7 @@ void setup() {
 }
 
 void loop() {
-  delay(dht.getMinimumSamplingPeriod());
+
   int as = digitalRead(cambien); // Đọc cảm biến ánh sáng
   int khigas = digitalRead(gas); //Đọc cảm biến khí gas
   int dadat = digitalRead(dat);
