@@ -1,0 +1,27 @@
+﻿Node red
+
+
+Trước hết cần cài node js
+xong cài
+https://nodered.org/
+Và broker mosquito (xem hướng dẫn cho ok)
+ https://tapit.vn/huong-dan-cai-dat-broker-mosquitto-tren-windows/
+:)) hơi lằn nhằng nhưng sau này quen, đm Linux chạy code có vẻ nhanh hơn.
+
+
+Chi tiết hướng dẫn:
+https://www.instructables.com/MQTTNODE-REDESP8266/
+
+
+https://www.makerlab.vn/node-red-mqtt-voi-raspberry-pi-va-wifi-kit-esp8266-bai-3-gui-du-lieu-cam-bien/
+ 
+https://htelectronics.vn/huong-dan-su-dung-esp8266-trong-cac-ung-dung-internet-of-things-phan-9/
+Đổi String sang Char
+<String> .c_str();
+
+
+:>> nên xem thử
+https://www.instructables.com/Totoro-Project-IoT-MQTT-ESP01/
+
+
+https://drive.google.com/drive/folders/16OOw5qzO7oybYGwUhts3emiqgY4YKGpg?usp=sharing
