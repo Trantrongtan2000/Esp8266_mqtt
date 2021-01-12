@@ -8,7 +8,7 @@
 #include <ESP8266WebServer.h>
 #include "WiFiManager.h"  
 
-unsigned long myChannelNumber = 1;
+unsigned long myChannelNumber = 1265826;
 const char * myWriteAPIKey = "LGR9ANUDLG6PXRC2";
 
 int cambien=12;   //Chan D6
@@ -97,7 +97,7 @@ void setup() {
   delay(1000);
   Serial.begin(115200);
   Serial.print("connecting");
-  WiFi.begin(ssid, password);;         //SSID,PASSWORD 
+
   
   ThingSpeak.begin(espclient2);
   WiFiManager wifiManager;
