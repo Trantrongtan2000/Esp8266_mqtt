@@ -4,6 +4,9 @@
 #include <ESP8266WiFi.h>
 #include<PubSubClient.h>
 #include "ThingSpeak.h"
+#include <DNSServer.h>
+#include <ESP8266WebServer.h>
+#include "WiFiManager.h"  
 
 unsigned long myChannelNumber = 1;
 const char * myWriteAPIKey = "LGR9ANUDLG6PXRC2";
@@ -19,8 +22,12 @@ int dat=A0;        //Chan A0
 #define DHTpin 14 //chan D5
 DHTesp dht;
 
-const char *ssid     = "TRONG TAN";     
-const char *password = "trongtan2000";
+void configModeCallback (WiFiManager *myWiFiManager)
+{
+  Serial.println("Entered config mode");
+  Serial.println(WiFi.softAPIP());
+  Serial.println(myWiFiManager->getConfigPortalSSID());
+}
 
 int lcdColumns = 16;
 int lcdRows = 2;
@@ -28,6 +35,7 @@ int lcdRows = 2;
 const char* mqtt_server="test.mosquitto.org";
 WiFiClient espclient;
 WiFiClient espclient2;
+
 int dem=0;
 int dem2=0;
 
@@ -92,14 +100,13 @@ void setup() {
   WiFi.begin(ssid, password);;         //SSID,PASSWORD 
   
   ThingSpeak.begin(espclient2);
-  while(WiFi.status()!=WL_CONNECTED){
-    delay(500);
-    Serial.print(".");
+  WiFiManager wifiManager;
+  if (!wifiManager.autoConnect())
+  {
+    Serial.println("failed to connect and hit timeout");
+    ESP.reset();
+    delay(1000);
   }
-  Serial.println("");
-  Serial.println("WiFi connected");
-  Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());
   
   reconnect();
 
